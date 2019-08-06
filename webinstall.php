@@ -89,13 +89,16 @@ switch ($do) {
             $zip->close();
             $done = true;
             //  echo "WOOT! $file extracted to $path";
+
+            unlink($fn);
+
+
+
         } else {
             exit("Doh! I couldn't open $file");
         }
 
-        if($done){
-            unlink($fn);
-        }
+
 
 
         break;
