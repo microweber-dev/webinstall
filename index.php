@@ -75,15 +75,9 @@ switch ($do) {
         $fn = ('mw-latest.zip');
 
         $zip_dir = basename('mw-latest.zip');
-//
-//        $unzip = new Unzip();
-//        $unzip->extract($dir . DIRECTORY_SEPARATOR . $fn);
-
-
 
         $file = $fn;
 
-// get the absolute path to $file
         $path = pathinfo(realpath($file), PATHINFO_DIRNAME);
 
         $zip = new ZipArchive;
@@ -94,14 +88,14 @@ switch ($do) {
             $zip->extractTo($dir);
             $zip->close();
             $done = true;
-          //  echo "WOOT! $file extracted to $path";
+            //  echo "WOOT! $file extracted to $path";
         } else {
             exit("Doh! I couldn't open $file");
         }
 
-
-
-
+        if($done){
+            unlink($fn);
+        }
 
 
         break;
@@ -117,10 +111,7 @@ switch ($do) {
 ?>
 
 
-<?php if ($do and $done == false): ?>
 
-<script>  window.location.href = "index.php"; </script>
- <?php endif; ?>
 <?php // unlink(__FILE__); ?>
 
 
@@ -206,7 +197,7 @@ if (function_exists('apache_get_modules')) {
                         <div class="card mb-4 shadow-sm">
                             <div class="card-header">
                                 <a href="https://microweber.org" target="_blank" id="logo"><img
-                                            src="http://members.microweber.com/logo/logo.png"
+                                            src="https://microweber.com/userfiles/media/microweber.com/logo_microweber.png"
                                             alt="Microweber"/></a>
 
                             </div>
@@ -224,10 +215,27 @@ if (function_exists('apache_get_modules')) {
                                         style="width:100%; display: none;"></iframe>
 
 
-                                <input type="hidden" name="action" value="download_and_unzip">
-                                <input type="submit" class="btn btn-lg btn-block btn-primary" name="submit"
-                                       value="Download and install Microweber">
+                                <div id="mw-dowload-button">
 
+                                    <input type="hidden" name="action" value="download_and_unzip">
+                                    <input type="submit" class="btn btn-lg btn-block btn-primary" name="submit"
+                                           value="Download and install Microweber">
+
+                                </div>
+
+                                <div id="mw-dowload-button-loading" style="display:none">
+
+                                    <button class="btn btn-primary" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status"
+                                              aria-hidden="true"></span>
+                                        Downloading...
+                                    </button>
+
+                                    <br>
+
+                                    <div class=" mb-3 mt-3" id="videoframe"></div>
+
+                                </div>
 
                             </div>
                         </div>
@@ -266,6 +274,14 @@ if (function_exists('apache_get_modules')) {
 
                     doc.forms['installer'].onsubmit = function () {
                         doc.querySelector('.box').className += ' installing';
+                        document.querySelector('#mw-dowload-button-loading').style.display = "block";
+                        document.querySelector('#mw-dowload-button').style.display = "none";
+
+
+                        var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/-ius5MMpKY4?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n';
+                        document.querySelector('#videoframe').innerHTML = html;
+
+
                     }
 
                 </script>
@@ -279,10 +295,23 @@ if (function_exists('apache_get_modules')) {
         <?php else: ?>
 
 
-            <script> //window.location.href = "index.php"; </script>
+            <script>  window.location.href = "index.php"; </script>
 
-            <?php // unlink(__FILE__); ?>
+            <?php unlink(__FILE__); ?>
         <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
         <?php
 
         function site_url($add_string = false)
