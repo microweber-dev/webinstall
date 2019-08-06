@@ -117,7 +117,7 @@ switch ($do) {
 ?>
 
 
-<?php if ($done == false): ?>
+<?php if ($do and $done == false): ?>
 
 <script>  window.location.href = "index.php"; </script>
  <?php endif; ?>
