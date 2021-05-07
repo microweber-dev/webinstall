@@ -125,7 +125,7 @@ switch ($do) {
 $check_pass = true;
 $server_check_errors = array();
 
-if (version_compare(phpversion(), "5.4.0", "<=")) {
+if (version_compare(phpversion(), "7.3.0", "<=")) {
     $check_pass = false;
     $server_check_errors['php_version'] = 'You must run PHP 5.4 or greater';
 }
