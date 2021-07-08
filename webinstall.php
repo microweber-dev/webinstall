@@ -127,7 +127,7 @@ $server_check_errors = array();
 
 if (version_compare(phpversion(), "7.3.0", "<=")) {
     $check_pass = false;
-    $server_check_errors['php_version'] = 'You must run PHP 5.4 or greater';
+    $server_check_errors['php_version'] = 'You must run PHP 7.3 or greater';
 }
 if (!function_exists('curl_init')) {
     $check_pass = false;
