@@ -50,7 +50,12 @@ switch ($do) {
     case 'download' :
     case 'download_and_unzip' :
 
-        $latest_url = "http://microweber.com/download.php";
+        $latest_url = "http://updater.microweberapi.com/microweber-master.zip";
+        if (isset($_REQUEST['branch']) and $_REQUEST['branch'] == 'dev') {
+            $latest_url = "http://updater.microweberapi.com/microweber-dev.zip";
+
+        }
+
         $fn = ($dir . DIRECTORY_SEPARATOR . 'mw-latest.zip');
         getfile($latest_url, $fn);
 
@@ -219,6 +224,21 @@ if (function_exists('apache_get_modules')) {
 
 
                                 <div id="mw-dowload-button">
+                                    <div class="form-group mb-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="branch" id="exampleRadios1" value="master" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Master Branch
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="branch" id="exampleRadios2" value="dev">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Dev Branch
+                                        </label>
+                                    </div>
+
+                                    </div>
 
                                     <input type="hidden" name="action" value="download_and_unzip">
                                     <input type="submit" class="btn btn-lg btn-block btn-primary" name="submit"
