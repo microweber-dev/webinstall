@@ -130,7 +130,7 @@ switch ($do) {
 $check_pass = true;
 $server_check_errors = array();
 
-if (version_compare(phpversion(), "7.3.0", "<=")) {
+if (version_compare(phpversion(), "8.1.0", "<=")) {
     $check_pass = false;
     $server_check_errors['php_version'] = 'You must run PHP 7.3 or greater';
 }
@@ -301,7 +301,7 @@ if (function_exists('apache_get_modules')) {
                         document.querySelector('#mw-dowload-button').style.display = "none";
 
 
-                        var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/-ius5MMpKY4?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n';
+                        var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EKiaLcZkReM?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n';
                         document.querySelector('#videoframe').innerHTML = html;
 
 
