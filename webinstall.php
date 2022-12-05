@@ -130,9 +130,11 @@ switch ($do) {
 $check_pass = true;
 $server_check_errors = array();
 
-if (version_compare(phpversion(), "8.1.0", "<=")) {
+$required_php_version = "7.3"; /* the required PHP version number*/
+
+if (version_compare(phpversion(), $required_php_version , "<=")) {
     $check_pass = false;
-    $server_check_errors['php_version'] = 'You must run PHP 7.3 or greater';
+    $server_check_errors['php_version'] = 'You must run PHP $required_php_version or greater';
 }
 if (!function_exists('curl_init')) {
     $check_pass = false;
