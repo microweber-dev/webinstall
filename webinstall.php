@@ -97,6 +97,12 @@ switch ($do) {
 
             unlink($fn);
 
+            if(function_exists('opcache_reset')){
+                @opcache_reset();
+            }
+
+
+
 
 
         } else {
@@ -301,7 +307,7 @@ if (function_exists('apache_get_modules')) {
                         document.querySelector('#mw-dowload-button').style.display = "none";
 
 
-                        var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EKiaLcZkReM?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n';
+                        var html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/C9c-jDe2lRA?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n';
                         document.querySelector('#videoframe').innerHTML = html;
 
 
